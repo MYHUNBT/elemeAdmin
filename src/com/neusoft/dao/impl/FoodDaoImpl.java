@@ -23,10 +23,12 @@ public class FoodDaoImpl implements FoodDao {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
+
+
     @Override
-    public List<Food> findAll(String foodName, int lowPrice, int highPrice) {
-        System.out.println(foodName);
-        StringBuffer sql = new StringBuffer("select * from food where 1=1");
+    public List<Food> findAll(Integer businessId,String foodName, int lowPrice, int highPrice) {
+
+        StringBuffer sql = new StringBuffer("select * from food where businessId = " + businessId);
         if(foodName != null && !foodName.equals("")){
             sql.append(" and foodName like '%").append(foodName).append("%'");
         }
@@ -61,15 +63,15 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     @Override
-    public Integer save(String foodName) {
+    public Integer save(String foodName,Integer businessId) {
         try {
             connection = JDBCUtils.getConnection();
-            String sql = "insert into food(foodName,foodPrice,businessId) values(?,0,0)";
+            String sql = "insert into food(foodName,foodPrice,businessId) values(?,0,?)";
             preparedStatement = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,foodName);
 //            preparedStatement.setString(2,food.getFoodExplain());
 //            preparedStatement.setBigDecimal(3,food.getFoodPrice());
-//            preparedStatement.setInt(4,food.getBusinessId());
+            preparedStatement.setInt(2,businessId);
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             resultSet.next();

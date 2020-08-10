@@ -10,5 +10,11 @@ import java.util.List;
  */
 
 public interface FoodView {
-    public void showFoodList();
+    public void showFoodList(Integer businessId);
+
+    public void showFoodSearch(Integer businessId);
+
+    public void saveFood(Integer businessId);
+
+    public void deleteFood();
 }

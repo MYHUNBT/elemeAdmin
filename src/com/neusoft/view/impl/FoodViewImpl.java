@@ -18,15 +18,15 @@ public class FoodViewImpl implements FoodView{
     private Scanner scanner = new Scanner(System.in);
     private FoodDao foodDao = new FoodDaoImpl();
     @Override
-    public void showFoodList() {
-        List<Food> foods = foodDao.findAll(null,0,0);
+    public void showFoodList(Integer businessId) {
+        List<Food> foods = foodDao.findAll(businessId,null,0,0);
         System.out.println("食物编号\t食物名字\t食物详情\t食物价格");
         for(Food food:foods){
             System.out.println(food.getFoodId() + "\t" + food.getFoodName() + "\t" + food.getFoodExplain() + "\t" + food.getFoodPrice());
         }
     }
 
-    public void showFoodSearch(){
+    public void showFoodSearch(Integer businessId){
         String foodName = null;
         int lowPrice = 0;
         int highPrice = 0;
@@ -49,7 +49,7 @@ public class FoodViewImpl implements FoodView{
             highPrice = scanner.nextInt();
         }
 
-        List<Food> foods = foodDao.findAll(foodName, lowPrice, highPrice);
+        List<Food> foods = foodDao.findAll(businessId,foodName, lowPrice, highPrice);
 
         System.out.println("食物编号\t食物名字\t食物详情\t食物价格");
         for(Food food:foods){
@@ -58,10 +58,10 @@ public class FoodViewImpl implements FoodView{
 
     }
 
-    public void saveFood(){
+    public void saveFood(Integer businessId){
         System.out.println("请输入食物的名字：");
         String foodName = scanner.next();
-        Integer foodId = foodDao.save(foodName);
+        Integer foodId = foodDao.save(foodName,businessId);
         if(foodId > 0){
             System.out.println("食物添加成功,食物的编号:" + foodId);
         }else {

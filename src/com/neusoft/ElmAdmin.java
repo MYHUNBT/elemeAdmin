@@ -111,32 +111,32 @@ public class ElmAdmin {
                                     break;
                                 case 2:
                                     System.out.println("欢迎来到饿了么食物管理子系统");
-                                    while (menuFood != 5){
-                                        System.out.println("========= 1.所有食物列表=2.搜索食物=3.新建食物=4.删除食物=5.退出食物管理子系统 =========");
-                                        System.out.println("请选择相应的菜单编号:");
-                                        menuFood = scanner.nextInt();
-                                        switch (menuFood){
-                                            case 1:
-                                                foodView.showFoodList();
-                                                break;
-                                            case 2:
-                                                foodView.showFoodSearch();
-                                                break;
-                                            case 3:
-                                                foodView.saveFood();
-                                                break;
-                                            case 4:
-                                                foodView.deleteFood();
-                                                break;
-                                            case 5:
-                                                System.out.println("====欢迎光临饿了么食物菜单====");
-                                                System.out.println();
-                                                break;
-                                            default:
-                                                System.out.println("没有这个菜单项");
-                                                break;
-                                        }
-                                    }
+//                                    while (menuFood != 5){
+//                                        System.out.println("========= 1.所有食物列表=2.搜索食物=3.新建食物=4.删除食物=5.退出食物管理子系统 =========");
+//                                        System.out.println("请选择相应的菜单编号:");
+//                                        menuFood = scanner.nextInt();
+//                                        switch (menuFood){
+//                                            case 1:
+//                                                foodView.showFoodList();
+//                                                break;
+//                                            case 2:
+//                                                foodView.showFoodSearch();
+//                                                break;
+//                                            case 3:
+//                                                foodView.saveFood();
+//                                                break;
+//                                            case 4:
+//                                                foodView.deleteFood();
+//                                                break;
+//                                            case 5:
+//                                                System.out.println("====欢迎光临饿了么食物菜单====");
+//                                                System.out.println();
+//                                                break;
+//                                            default:
+//                                                System.out.println("没有这个菜单项");
+//                                                break;
+//                                        }
+//                                    }
                                     break;
                                 case 3:
                                     System.out.println("欢迎光临饿了么管理系统");
@@ -177,13 +177,13 @@ public class ElmAdmin {
                                         menuFood = scanner.nextInt();
                                         switch (menuFood){
                                             case 1:
-                                                foodView.showFoodList();
+                                                foodView.showFoodList(business.getBusinessId());
                                                 break;
                                             case 2:
-                                                foodView.showFoodSearch();
+                                                foodView.showFoodSearch(business.getBusinessId());
                                                 break;
                                             case 3:
-                                                foodView.saveFood();
+                                                foodView.saveFood(business.getBusinessId());
                                                 break;
                                             case 4:
                                                 foodView.deleteFood();
